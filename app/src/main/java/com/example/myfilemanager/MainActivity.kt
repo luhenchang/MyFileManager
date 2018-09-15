@@ -5,37 +5,43 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.os.storage.StorageManager
 import android.support.v4.app.ActivityCompat
 import android.util.Log
 import android.widget.Toast
 import java.lang.reflect.Array
 import java.lang.reflect.InvocationTargetException
+import kotlinx.android.synthetic.main.activity_main.*
+class MainActivity : AppCompatActivity(),OnclickInterfaceFile{
+    override fun itemClick(position: Int) {
+    }
 
-class MainActivity : AppCompatActivity() {
     companion object {
         const val T_DIR = 0// 文件夹
         const val T_FILE = 1// 文件
     }
     private final var REQUEST_WRITE_EXTERNAL_STORAGE=99
-     lateinit var list: List<FileInfo>// 数据
+    lateinit var list: List<FileInfo>// 数据
+    private lateinit var  mAdapter:FileAdapter
      override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //1.动态权限的获取。
         checkPermission()
-         Log.e("sd_card", Environment.getExternalStorageDirectory().absolutePath)
-         Log.e("sd_card", Environment.getExternalStorageDirectory().absolutePath)
-        //2.获取文件列表
-        list = FileManagerUtils.getListData(getStoragePath(this, false)!!)// 数据
-         for (index in 0..list.size-1) {
-            System.out.println("FileNmae="+list[index])
-             Log.e("erro","FileNmae="+list[index]+"\\n")
-         }
-
-
+        //2.获取文件列表数据
+        list = FileUtils.getListData(getStoragePath(this, false)!!)// 数据
+        iniView()
      }
+
+    private fun iniView() {
+        mAdapter= FileAdapter(this)
+        mAdapter.list=list
+        mAdapter.setProxy(this)
+        list_file.adapter=mAdapter
+        mAdapter.notifyDataSetChanged()
+
+    }
+
     /**
      * 反射调用获取内置存储和外置sd卡根路径
      * @param mContext    上下文
