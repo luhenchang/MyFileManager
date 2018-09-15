@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity(),OnclickInterfaceFile{
         list_file.adapter=mAdapter
         mAdapter.notifyDataSetChanged()
 
+
     }
       //点击Item时候，选择item然后再次点击取消，如果slectMap中没有存储的key那么就可以影藏下面的布局文件。
        override fun itemClick(position: Int) {
