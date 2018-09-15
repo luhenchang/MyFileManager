@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity(),OnclickInterfaceFile{
         list = FileUtils.getListData(getStoragePath(this, false)!!)// 数据
         iniView()
      }
-
     private fun iniView() {
         mAdapter= FileAdapter(this)
         mAdapter.list=list
