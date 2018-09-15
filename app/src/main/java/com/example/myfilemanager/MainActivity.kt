@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         list = FileManagerUtils.getListData(getStoragePath(this, false)!!)// 数据
          for (index in 0..list.size-1) {
             System.out.println("FileNmae="+list[index])
-             Log.e("erro","FileNmae="+list[index]+"\n")
+             Log.e("erro","FileNmae="+list[index]+"\\n")
          }
 
 
