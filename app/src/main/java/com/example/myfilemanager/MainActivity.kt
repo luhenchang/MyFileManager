@@ -36,9 +36,6 @@ class MainActivity : AppCompatActivity() {
 
 
      }
-
-
-
     /**
      * 反射调用获取内置存储和外置sd卡根路径
      * @param mContext    上下文
@@ -46,7 +43,6 @@ class MainActivity : AppCompatActivity() {
      * @return
      */
     private fun getStoragePath(mContext: Context, haveSdCard: Boolean): String? {
-
         val mStorageManager = mContext.getSystemService(Context.STORAGE_SERVICE) as StorageManager
         var storageVolumeClazz: Class<*>? = null
         try {
@@ -78,6 +74,7 @@ class MainActivity : AppCompatActivity() {
 
         return null
     }
+    //这里进行权限申请检查
     private fun checkPermission() {
         //检查权限（NEED_PERMISSION）是否被授权 PackageManager.PERMISSION_GRANTED表示同意授权
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
