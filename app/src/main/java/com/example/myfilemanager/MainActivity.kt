@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity(),OnclickInterfaceFile{
         const val T_DIR = 0// 文件夹
         const val T_FILE = 1// 文件
     }
-    private final var REQUEST_WRITE_EXTERNAL_STORAGE=99
+    private var REQUEST_WRITE_EXTERNAL_STORAGE=99
     lateinit var list: List<FileInfo>// 数据
     private lateinit var  mAdapter:FileAdapter
      override fun onCreate(savedInstanceState: Bundle?) {
