@@ -8,13 +8,13 @@ import android.os.Bundle
 import android.os.storage.StorageManager
 import android.support.v4.app.ActivityCompat
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import com.example.myfilemanager.R.id.list_file
 import java.lang.reflect.Array
 import java.lang.reflect.InvocationTargetException
 import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(),OnclickInterfaceFile{
-    override fun itemClick(position: Int) {
-    }
 
     companion object {
         const val T_DIR = 0// 文件夹
@@ -41,7 +41,32 @@ class MainActivity : AppCompatActivity(),OnclickInterfaceFile{
         mAdapter.notifyDataSetChanged()
 
     }
+      //点击Item时候，选择item然后再次点击取消，如果slectMap中没有存储的key那么就可以影藏下面的布局文件。
+       override fun itemClick(position: Int) {
+        //点击多选的实现
+        if (mAdapter.selectMap.containsKey(position)) {
+            //删除key
+            mAdapter.selectMap.remove(position)
+            if (mAdapter.selectMap.size === 0) {
 
+                bottom.setVisibility(View.GONE)
+            } else {
+                bottom.setVisibility(View.VISIBLE)
+            }
+        } else {
+
+            bottom.setVisibility(View.VISIBLE)
+            mAdapter.selectMap.put(position, position)
+        }
+        mAdapter.notifyDataSetChanged()
+    }
+
+    //全不选操作
+    fun selectNone(v: View) {
+        mAdapter.selectMap.clear()
+
+        mAdapter.notifyDataSetChanged()
+    }
     /**
      * 反射调用获取内置存储和外置sd卡根路径
      * @param mContext    上下文
