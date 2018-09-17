@@ -6,8 +6,6 @@ import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
-
-
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -24,7 +22,7 @@ import java.util.Date
  */
 class FileUtils {
     var pathFile = ""
-    var adapter: MyAdapter? = null
+    var adapter: FileAdapter? = null
     companion object {
         var KEY = ""//全局搜索的关键
 

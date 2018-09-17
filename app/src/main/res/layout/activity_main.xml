@@ -1,30 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="5dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/infobar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:gravity="center_vertical"
+        android:background="#f0f0f0">
+        <!-- 用来扩大排序点击的父容器:box -->
+        <LinearLayout
+            android:id="@+id/sort_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clickImg"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/sort"
+                android:textColor="#999"
+                android:textSize="18sp"
+                android:text="排序:"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/iv_asc"
+                android:src="@drawable/top_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:onClick="clickImg" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/count"
+            android:textColor="#999"
+            android:textSize="18sp"
+            android:text="文件数:"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/size"
+            android:textColor="#999"
+            android:textSize="18sp"
+            android:text="大小:"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/topbar1"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/infobar">
+
+        <TextView
+            android:id="@+id/path"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="start"
+            android:text="路径" />
+
+    </LinearLayout>
+
     <ListView
         android:layout_weight="1"
-        android:id="@+id/list_file"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </ListView>
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#f0f0f0"
+        android:cacheColorHint="#00000000"
+        android:layout_below="@+id/topbar1" />
     <RelativeLayout
         android:id="@+id/bottom"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="#3814e3ea"
-        android:visibility="gone">
+        android:visibility="visible">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
 
@@ -32,13 +103,13 @@
                 android:onClick="selectNone"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:orientation="vertical"
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/fanxuan" />
 
                 <TextView
@@ -51,15 +122,16 @@
 
 
             <LinearLayout
+                android:onClick="cope"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:orientation="vertical"
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/copys" />
 
                 <TextView
@@ -74,14 +146,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:orientation="vertical"
                 android:gravity="center"
                 android:onClick="pathDelete">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/jianqie" />
 
                 <TextView
@@ -96,14 +168,14 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:onClick="delete"
                 android:orientation="vertical"
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/deleted" />
 
                 <TextView
@@ -119,13 +191,13 @@
                 android:onClick="selectAll"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:orientation="vertical"
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/selected_all" />
 
                 <TextView
@@ -140,15 +212,15 @@
                 android:id="@+id/pathclick"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:onClick="path"
                 android:orientation="vertical"
                 android:gravity="center">
 
                 <ImageView
                     android:id="@+id/imgpath"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/zhantie" />
 
                 <TextView

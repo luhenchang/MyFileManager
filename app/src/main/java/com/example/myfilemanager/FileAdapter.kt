@@ -74,7 +74,7 @@ class FileAdapter(context: Context) : BaseAdapter() {
         }
         val map = list!![position]
         val w = map.name as String// 原始应用名
-        val key = FileManagerUtils.KEY
+        val key = FileUtils.KEY
         val start = w.toLowerCase().indexOf(key.toLowerCase())//高亮文字的起始位置
         if (start > -1) {// 有
             val end = start + key.length//高亮文字的终止位置
@@ -110,6 +110,7 @@ class FileAdapter(context: Context) : BaseAdapter() {
         holder.lineOnClick!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View) {
                 proxy.itemClick(position)
+
             }
         })
         return convertView
